@@ -31,5 +31,5 @@ for b in sorted(list(set(data__particles_per_quad["Beach"].to_numpy()))):
     plt.xlabel("plastics per quadrat (0.09m square)\n(in 100s)")
     plt.title(f"Distribution of Plastic Counts for {b} Beach")
     #plt.legend()
-    plt.savefig(f"plastics_hist_{b}_High_vs_Storm.png", dpi=300, bbox_inches="tight")
-    #plt.show()
+    #plt.savefig(f"plastics_hist_{b}_High_vs_Storm.png", dpi=300, bbox_inches="tight")
+    plt.show()
