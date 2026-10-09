@@ -1,20 +1,21 @@
 import pandas as pd
 import numpy as np 
 import matplotlib.pyplot as plt 
+import seaborn as sns
 
 
 
-data__particles_per_quad = pd.read_excel("./Project/oahu_windward_beaches_microplastics_survey.xlsx",sheet_name="Particles per Quad")
-data__sand_mass = pd.read_excel("./Project/oahu_windward_beaches_microplastics_survey.xlsx",sheet_name="Sand Mass")
-data__beach_location = pd.read_excel("./Project/oahu_windward_beaches_microplastics_survey.xlsx",sheet_name="Beach Location")
-data__percent_particles_per_size_class = pd.read_excel("./Project/oahu_windward_beaches_microplastics_survey.xlsx",sheet_name="Percent Particles per Size Clas")
-
-print(data__particles_per_quad)
+data__particles_per_quad = pd.read_excel("./oahu_windward_beaches_microplastics_survey.xlsx",sheet_name="Particles per Quad")
+data__sand_mass = pd.read_excel("./oahu_windward_beaches_microplastics_survey.xlsx",sheet_name="Sand Mass")
+data__beach_location = pd.read_excel("./oahu_windward_beaches_microplastics_survey.xlsx",sheet_name="Beach Location")
+data__percent_particles_per_size_class = pd.read_excel("./oahu_windward_beaches_microplastics_survey.xlsx",sheet_name="Percent Particles per Size Clas")
+'''
+#print(data__particles_per_quad)
 
 # Exploratory Visuals
 ## Microplastic Abundance
 
-'''data__particles_per_quad_groupby_beach_tide = data__particles_per_quad.groupby(["Beach","Tide"],as_index=False)["plastics per quadrat (0.09m square)"].agg(mean="mean",median='median',n='count',total='sum').sort_values(by=["Beach","Tide"],ascending=False)
+data__particles_per_quad_groupby_beach_tide = data__particles_per_quad.groupby(["Beach","Tide"],as_index=False)["plastics per quadrat (0.09m square)"].agg(mean="mean",median='median',n='count',total='sum').sort_values(by=["Beach","Tide"],ascending=False)
 data__particles_per_quad_groupby_beach = data__particles_per_quad.groupby(["Beach"],as_index=False)["plastics per quadrat (0.09m square)"].agg(mean="mean",median='median',n='count',total='sum').sort_values(by=["Beach"],ascending=False)
 
 print(data__particles_per_quad_groupby_beach_tide)
@@ -31,6 +32,7 @@ plt.legend()
 plt.xticks(np.arange(1,7),sorted(list(set(data__particles_per_quad_groupby_beach["Beach"].to_numpy())),reverse=True))
 plt.show()'''
 
+'''
 ## Distribution
 data__percent_particles_per_size_class = data__percent_particles_per_size_class.sort_values(by=["Beach","Tide"],ascending=False)
 print(data__percent_particles_per_size_class)
@@ -60,7 +62,7 @@ plt.xticks(np.arange(20,260,40),sorted(list(set([f" |High|{x}|Low| " for x in da
 for x in np.arange(4,270,40):
     plt.axvline(x,ymin=0,ymax=80,linestyle='--',color='black')
 plt.show()
-
+'''
 
 
 
