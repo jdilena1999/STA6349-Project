@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np 
 import matplotlib.pyplot as plt 
+from matplotlib.ticker import MultipleLocator,NullFormatter,FuncFormatter
 import seaborn as sns
 from data_cleaning import data__particles_per_quad
 #data__particles_per_quad = pd.read_excel("./oahu_windward_beaches_microplastics_survey.xlsx",sheet_name="Particles per Quad")
@@ -32,14 +33,21 @@ bins = np.arange(0,3501,50)
     #plt.legend()
     plt.savefig(f"Distribution of Plastic Counts at {t} Tide by Beach.png",dpi=300, bbox_inches="tight")
     #plt.show()'''
+fig,ax = plt.subplots()
     
 #for t in sorted(list(set(data__particles_per_quad["Tide"].to_numpy()))):
     #sns.histplot(data=data__particles_per_quad[(data__particles_per_quad["Tide"].isin([t]))],x="plastics per quadrat (0.09m square)", bins=bins,hue="Beach",multiple="dodge",palette="Set1",edgecolor='black')#, color="#93A8BF")
-sns.scatterplot(data=data__particles_per_quad,x="Beach",y="plastics per quadrat (0.09m square)",hue="Tide",palette="Set1")
+sns.scatterplot(data=data__particles_per_quad,x="Beach",y="plastics per quadrat (0.09m square)",ax=ax,hue="Tide",palette="Set1")
+ax.yaxis.set_major_locator(MultipleLocator(200))
+ax.yaxis.set_minor_locator(MultipleLocator(50))
+ax.yaxis.set_minor_formatter(NullFormatter())
+ax.yaxis.set_major_formatter(FuncFormatter(lambda x,pos:f"{x/100:,.0f}"))
+ax.tick_params(axis='y',which='major',length=7)
+ax.tick_params(axis='y',which='minor',length=3)
     #ticks = np.arange(0,4_000,100)
-y_ticks = np.arange(0,4_000,100)
+#y_ticks = np.arange(0,4_000,100)
     #plt.xticks(ticks,[f"{x/100:,.0f}" for x in ticks])
-plt.yticks(y_ticks,[f"{x/100:,.0f}" for x in y_ticks])
+#plt.yticks(y_ticks,[f"{x/100:,.0f}" for x in y_ticks])
 plt.ylabel(f"plastics per quadrat (0.09m square)\nin 100s")
 #plt.xlabel("Beach")
 plt.title(f"Distribution of Plastic Counts by Beach and Tide")
