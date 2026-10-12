@@ -10,10 +10,11 @@ data.rename(columns={"variable":"Size","value":"Percent"},inplace=True)
 data.sort_values(by=["Beach","Tide"],inplace=True)
 data.reset_index()
 print(data)
-
+data["Beach-Tide"] = data["Beach"]+'-'+data["Tide"]
+data = data.sort_values(by="Beach-Tide")
 fig,ax = plt.subplots()
 
-sns.barplot(data=data,x="Beach",y="Percent",hue="Size",errorbar=None)
+sns.barplot(data=data,x="Beach-Tide",y="Percent",hue="Size",errorbar=None)
 plt.title("Particle Size Distributions by Beach")
 ax.yaxis.set_major_locator(MultipleLocator(10))
 ax.yaxis.set_minor_locator(MultipleLocator(5))
