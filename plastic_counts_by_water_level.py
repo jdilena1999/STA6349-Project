@@ -21,8 +21,10 @@ bins = np.arange(0,3501,50)
     #plt.hist("plastics per quadrat (0.09m square)",bins=np.arange(0,3501,50),data=data__particles_per_quad[(data__particles_per_quad["Tide"].isin(["high"])) & (data__particles_per_quad["Beach"].isin([b]))],label=b)
 
 for b in sorted(list(set(data__particles_per_quad["Beach"].to_numpy()))):
-    #for t in sorted(list(set(data__particles_per_quad["Tide"].to_numpy()))):        
-    sns.histplot(data=data__particles_per_quad[(data__particles_per_quad["Beach"].isin([b]))],x="plastics per quadrat (0.09m square)", bins=bins,hue="Tide",multiple="dodge",palette="Set1",edgecolor='black')#, color="#93A8BF")
+    #for t in sorted(list(set(data__particles_per_quad["Tide"].to_numpy()))):    
+    fig,ax = plt.subplots()    
+    sns.histplot(data=data__particles_per_quad[(data__particles_per_quad["Beach"].isin([b]))],x="plastics per quadrat (0.09m square)", 
+                 bins=bins,hue="Tide",multiple="dodge",palette="Set1",edgecolor='black')#, color="#93A8BF")
 
     ticks = np.arange(0,4_000,100)
     y_ticks = np.arange(0,10)
