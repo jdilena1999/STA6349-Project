@@ -12,7 +12,7 @@ data.reset_index()
 print(data)
 data["Beach-Tide"] = data["Beach"]+'-'+data["Tide"]
 data = data.sort_values(by="Beach-Tide")
-fig,ax = plt.subplots()
+fig,ax = plt.subplots(figsize=(25,10))
 
 sns.barplot(data=data,x="Beach-Tide",y="Percent",hue="Size",errorbar=None)
 plt.title("Particle Size Distributions by Beach")
